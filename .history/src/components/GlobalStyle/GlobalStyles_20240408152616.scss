@@ -8,14 +8,10 @@
 //base
 :root {
     --primary: #ff3b5c;
-    --default-layout-header-height: 60px;
-    --default-layout-width: 1150px;
-
 }
 
 * {
-    margin: 0;
-    padding: 0;
+    ma
     box-sizing: border-box;
 }
 
@@ -29,3 +25,5 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
+
+

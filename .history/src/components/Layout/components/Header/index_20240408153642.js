@@ -5,9 +5,7 @@ const cx = classNames.bind(styles);
 
 function Header() {
     console.log(cx('wrapper'))
-    return <header className={cx('wrapper')}>
-        <div className={cx('content')}></div>
-    </header>;
+    return <header className={cx('wrapper')}>Header</header>;
 }
 
 export default Header;
