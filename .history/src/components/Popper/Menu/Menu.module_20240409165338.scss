@@ -1,0 +1,17 @@
+.content {
+    width: 224px;
+
+    .menu-item {
+        margin-left: 0;
+    }
+}
+
+.menu-item {
+    &:hover {
+        background-color: rgba(22, 25, 35, 0.02);
+    }
+}
+
+.menu-popper {
+    padding-bottom: 8px;
+}
