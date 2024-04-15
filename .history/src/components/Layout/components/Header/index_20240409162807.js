@@ -24,8 +24,8 @@ import Menu from '~/components/Popper/Menu';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faLanguage}/>
-        title: 'Tiếng việt'
+        icon: <FontAwesomeIcon icon={faLanguage}/>,
+        title: 'Tiếng việt',
     }
 ]
 
