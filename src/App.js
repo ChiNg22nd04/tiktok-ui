@@ -2,7 +2,7 @@ import { BrowserRouter as Router, RouterProps, Route, Routes } from 'react-route
 // thẻ fragment chỉ để chứa mà k sinh ra thẻ thật ở trong DOM
 import { Fragment } from 'react';
 import { publicRoutes } from '~/routes';
-import { DefaultLayout } from '~/components/Layout';
+import { DefaultLayout } from '~/layouts';
 
 function App() {
     return (
@@ -10,7 +10,6 @@ function App() {
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
-
                         let Layout = DefaultLayout;
                         if (route.layout) {
                             Layout = route.layout;

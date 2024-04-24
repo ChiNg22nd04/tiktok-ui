@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
 import { faL } from '@fortawesome/free-solid-svg-icons';
-
+import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 
 function Button({
@@ -64,5 +64,22 @@ function Button({
         </Component>
     );
 }
+
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    small: PropTypes.bool,
+    text: PropTypes.bool,
+    disabled: PropTypes.bool,
+    large: PropTypes.bool,
+    outline: PropTypes.bool,
+    primary: PropTypes.bool,
+    rounded: PropTypes.string,
+    className: PropTypes.string,
+    rightIcon: PropTypes.node,
+    leftIcon: PropTypes.node,
+    onClick: PropTypes.func,
+};
 
 export default Button;
