@@ -45,6 +45,23 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'en',
                     title: 'English',
+                    children: {
+                        title: 'Language 2',
+
+                        data: [
+                            {
+                                type: 'language',
+                                code: 'en',
+                                title: 'English',
+                                children: {},
+                            },
+                            {
+                                type: 'language',
+                                code: 'vi',
+                                title: 'Tiếng việt',
+                            },
+                        ],
+                    },
                 },
                 {
                     type: 'language',

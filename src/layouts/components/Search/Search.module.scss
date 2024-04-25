@@ -13,6 +13,7 @@
         color: rgb(22, 24, 35);
         font-size: 1.6rem;
         flex: 1;
+        padding-right: 40px !important;
         border: none;
         outline: none;
         padding: 12px 0;
@@ -20,7 +21,7 @@
         background-color: transparent;
     }
 
-    input:not(:placeholder-shown) ~ .search-btn {
+    input:not(:placeholder-shown)~.search-btn {
         color: rgba(22, 24, 35, 0.75);
     }
 
@@ -31,6 +32,7 @@
     &:hover {
         border-color: rgba(22, 24, 35, 0.2);
         cursor: pointer;
+
         .search-btn {
             color: rgba(22, 24, 35, 0.75);
             background-color: rgba(22, 24, 35, 0.03);
@@ -98,8 +100,7 @@
     width: var(--search-width);
 }
 
-.search-result {
-}
+.search-result {}
 
 .search-title {
     height: 30px;

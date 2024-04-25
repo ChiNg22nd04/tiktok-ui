@@ -10,14 +10,15 @@ import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 const defaultFunction = () => {};
 
-function Menu({ children, items = [], hideOnClick = false, onChange = defaultFunction }) {
+function Menu({ children, items = [], hideOnClick = true, onChange = defaultFunction }) {
     // ban đầu render ra list item
     const [history, setHistory] = useState([{ data: items }]);
+    const [visible, setVisiable] = useState(false);
     //lấy ptu cuối
     const currernValue = history[history.length - 1];
 
     const renderItems = () => {
-        return currernValue.data.map((item, index) => {
+        return currernValue.data?.map((item, index) => {
             const isParent = !!item.children;
             return (
                 <MenuItem
@@ -38,9 +39,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
     return (
         <Tippy
             offset={[12, 8]}
-            interactive
             delay={[0, 700]}
-            hideOnClick={hideOnClick}
+            interactive
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('content')} tabIndex="-1" {...attrs}>
@@ -49,7 +49,9 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
                             <Header
                                 title={currernValue.title}
                                 onBack={() => {
-                                    setHistory((pre) => pre.slice(0, pre.length - 1));
+                                    setHistory((pre) => {
+                                        return pre.slice(0, pre.length - 1);
+                                    });
                                 }}
                             />
                         )}
