@@ -1,5 +1,7 @@
+// menu item
 .menu-item {
     display: flex;
+    padding: 20px 0px 26px 8px;
     height: 48px;
     padding: 8px;
     align-items: center;
@@ -27,6 +29,11 @@
             display: block;
         }
     }
+
+}
+
+.menu-item:last-child {
+    margin-bottom: 8px;
 }
 
 .menu-title {
@@ -35,4 +42,3 @@
     margin-left: 8px;
     font-weight: 600;
 }
-

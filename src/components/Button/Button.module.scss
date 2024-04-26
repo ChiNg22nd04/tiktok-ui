@@ -10,7 +10,7 @@
     border: 1px solid transparent;
     user-select: none;
 
-    + .wrapper {
+    +.wrapper {
         margin-left: 16px;
     }
 
@@ -26,6 +26,7 @@
     border-radius: 999px;
     border-color: rgba(22, 24, 35, 0.12);
     box-shadow: 0 2px 8px rgb(0 0 0 /6%);
+
     &:hover {
         border-color: rgba(22, 24, 35, 0.2);
         background-color: rgba(22, 24, 35, 0.03);
@@ -37,6 +38,7 @@
     color: var(--white);
     border-color: var(--white);
     border-radius: 4px;
+
     &:hover {
         border-color: var(--white);
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
@@ -46,6 +48,7 @@
 .outline {
     border-color: var(--primary-color);
     color: var(--primary-color);
+
     &:hover {
         text-decoration: none;
         border-color: var(--primary-color);
@@ -74,8 +77,8 @@
     color: #cccc;
 }
 
-.icon + .title,
-.title + .icon {
+.icon+.title,
+.title+.icon {
     margin-left: 8px;
 }
 

@@ -169,7 +169,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/3892aec25da48b657be7eb3650b734b6.jpeg?lk3s=a5d48078&x-expires=1713070800&x-signature=MWLG%2BYGPF%2FlxrUoKMO8apARUH%2Fo%3D"
+                                src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/3892aec25da48b657be7eb3650b734b6.jpeg?lk3s=a5d48078&x-expires=1714276800&x-signature=YInZaBX09O%2B8uSbS9VtLYZazdRY%3D"
                                 fallback="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/3892aec25da48b657be7eb3650b734b6.jpeg?lk3s=a5d48078&x-expires=1713243600&x-signature=bXehmu8SouXzPNaj8F8DBHYhQgU%3D"
                                 alt="Avatat"
                             />

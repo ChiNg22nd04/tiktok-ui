@@ -1,0 +1,133 @@
+//suggest account
+.wrapper {
+    border-top: 0.5px solid rgba(22, 24, 35, 0.12);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin: 0 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+}
+
+// account item
+.account-item {
+    display: flex;
+    height: 48px;
+    padding: 6px 5px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2px;
+    margin: 0 -5px;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+        transition: background 200ms ease-in-out 0s;
+        border-radius: 4px;
+    }
+}
+
+.label {
+    font-size: 1.4rem;
+    margin: 0 0px 12px 0px;
+    color: rgba(22, 24, 35, 0.75);
+    font-weight: 600;
+}
+
+.item-img {
+    height: 36px;
+    width: 36px;
+    align-items: flex-start;
+    border-style: solid;
+    border-color: var(--primary-color);
+    border-radius: 50%;
+    border-width: 1px;
+    position: relative;
+}
+
+.avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    left: 2px;
+    top: 2px;
+
+}
+
+.item-info {
+    margin-left: 8px;
+}
+
+.nickname {
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 136px;
+
+}
+
+.nickname-item {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 2.1rem;
+    text-overflow: ellipsis;
+}
+
+.check-icon {
+    color: rgb(32, 213, 236);
+    font-size: 1.6rem;
+    margin-left: 4px;
+}
+
+.username {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: rgba(22, 24, 35, 0.75);
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    /* số dòng cần cắt ở đây */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-more {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    margin: 8px 0 0 5px;
+    font-size: 1.4rem;
+}
+
+.more-icon {
+    margin-right: 4px;
+}
+
+.more-icon,
+.more-text {
+    cursor: pointer;
+}
+
+.notify {
+    color: rgb(22, 24, 35);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 45px;
+    text-align: right;
+    margin-inline-start: 10px;
+    min-width: 33px;
+}
+
+//login
+.btn-sidebar {
+    width: 100%;
+}

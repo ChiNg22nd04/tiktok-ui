@@ -2,6 +2,8 @@ import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
 import Menu, { MenuItem } from './Menu';
 import config from '~/config';
+import Image from '~/components/Images';
+
 import {
     HomeIcon,
     FollowingIcon,
@@ -13,7 +15,10 @@ import {
     FriendsIconActive,
     LIVEIconActive,
     ExploreIconActive,
+    ProfileIcon,
 } from '~/components/Icons';
+import SuggestAccount from './SuggestAccount';
+import Footer from './Footer';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
@@ -50,7 +55,24 @@ function Sidebar() {
                     icon={<LIVEIcon className={cx('icon-flex')} />}
                     active={<LIVEIconActive className={cx('icon-flex')} />}
                 ></MenuItem>
+                <MenuItem
+                    title="Profile"
+                    to={config.routes.profile}
+                    active={
+                        <Image
+                            className={cx('user-avatar')}
+                            src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/3892aec25da48b657be7eb3650b734b6.jpeg?lk3s=a5d48078&x-expires=1714276800&x-signature=YInZaBX09O%2B8uSbS9VtLYZazdRY%3D"
+                            fallback="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/3892aec25da48b657be7eb3650b734b6.jpeg?lk3s=a5d48078&x-expires=1713243600&x-signature=bXehmu8SouXzPNaj8F8DBHYhQgU%3D"
+                            alt="Avatat"
+                        />
+                    }
+                    icon={<ProfileIcon className={cx('icon-flex')} />}
+                ></MenuItem>
             </Menu>
+
+            <SuggestAccount label="Following accounts" />
+
+            <Footer/>
         </aside>
     );
 }
