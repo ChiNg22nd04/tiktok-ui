@@ -1,12 +1,55 @@
 .wrapper {
     padding: 16px 0 0 8px;
+    position: relative;
+
 }
 
 .banner {
     max-width: 220px;
     display: flex;
+    margin-bottom: 28px;
+
+
+    .img-banner {
+        width: 207px;
+    }
+
+    .text {
+        position: absolute;
+        color: rgb(255, 245, 201);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 16px;
+        top: 25px;
+        left: 58px;
+        width: 141px;
+        overflow: hidden;
+    }
 }
 
-.img-banner {
-    width: 207px;
+.text-main {
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 0px;
+    color: rgba(22, 24, 35, 0.5);
+    font-weight: 700;
+
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.box-text {
+
+    .text-sub {
+        display: inline-block;
+        color: rgba(22, 24, 35, 0.5);
+        font-size: 12px;
+        margin: 5px 6px 0 0;
+
+        &:hover {
+            text-decoration: underline
+        }
+    }
 }
