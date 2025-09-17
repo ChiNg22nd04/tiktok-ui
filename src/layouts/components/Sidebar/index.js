@@ -30,9 +30,21 @@ const cx = classNames.bind(styles);
 
 function Sidebar() {
     const [isCompact, setIsCompact] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const subnavRef = useRef(null);
 
-    const handleFocusSearch = useCallback(() => setIsCompact(true), []);
+    const openSubnav = useCallback(() => {
+        setIsClosing(false);
+        setIsCompact(true);
+    }, []);
+
+    const startCloseSubnav = useCallback(() => {
+        if (!isCompact) return;
+        setIsClosing(true);
+        setIsCompact(false);
+    }, [isCompact]);
+
+    const handleFocusSearch = useCallback(() => openSubnav(), [openSubnav]);
     const handleBlurSearch = useCallback((e) => {
         // If blur happens to an element inside subnav, keep it open.
         // We'll close only when clicking outside of the subnav panel.
@@ -43,12 +55,12 @@ function Sidebar() {
         const onDocClick = (e) => {
             if (!subnavRef.current) return;
             if (!subnavRef.current.contains(e.target)) {
-                setIsCompact(false);
+                startCloseSubnav();
             }
         };
         if (isCompact) document.addEventListener('mousedown', onDocClick);
         return () => document.removeEventListener('mousedown', onDocClick);
-    }, [isCompact]);
+    }, [isCompact, startCloseSubnav]);
 
     return (
         <aside className={cx('wrapper', { compact: isCompact })}>
@@ -73,7 +85,7 @@ function Sidebar() {
                     <button
                         className={cx('nav-icon', { active: true })}
                         aria-label="Search active"
-                        onClick={() => setIsCompact(true)}
+                        onClick={openSubnav}
                     >
                         <FontAwesomeIcon className={cx('icon')} icon={faMagnifyingGlass} />
                     </button>
@@ -139,8 +151,14 @@ function Sidebar() {
             </div>
 
             {/* Sub navigation panel when compact */}
-            {isCompact && (
-                <div ref={subnavRef} className={cx('subnav')}>
+            {(isCompact || isClosing) && (
+                <div
+                    ref={subnavRef}
+                    className={cx('subnav', { closing: isClosing })}
+                    onAnimationEnd={() => {
+                        if (isClosing) setIsClosing(false);
+                    }}
+                >
                     <div
                         style={{
                             display: 'flex',
@@ -153,7 +171,7 @@ function Sidebar() {
                         <h2 className={cx('subnav-title')}>Search</h2>
                         <button
                             aria-label="Close"
-                            onClick={() => setIsCompact(false)}
+                            onClick={startCloseSubnav}
                             style={{
                                 background: 'transparent',
                                 border: 'none',

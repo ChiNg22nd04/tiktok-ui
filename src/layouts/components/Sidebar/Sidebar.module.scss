@@ -141,12 +141,43 @@
     z-index: 900;
     padding: 28px 24px 24px;
     overflow: hidden auto;
+    /* slide-in on mount */
+    animation: subnav-slide-in 200ms ease-out;
+    will-change: transform, opacity;
 }
 
 .subnav-title {
     font-size: 20px;
     font-weight: 700;
     color: var(--color-text);
+}
+
+@keyframes subnav-slide-in {
+    from {
+        transform: translateX(-16px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.subnav.closing {
+    animation: subnav-slide-out 160ms ease-in forwards;
+}
+
+@keyframes subnav-slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-16px);
+        opacity: 0;
+    }
 }
 
 /* Wrapper width changes when compact */
