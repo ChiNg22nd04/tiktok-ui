@@ -94,6 +94,11 @@ function Search() {
             )}
         >
             <div className={cx('search')}>
+                {!!searchValue && !loading && (
+                    <button onClick={handleClear} className={cx('clear-btn')}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+                )}
                 <input
                     onFocus={() => setShowResult(true)}
                     ref={inputRef}
@@ -104,11 +109,6 @@ function Search() {
                         setSearchValue(e.target.value.trimStart());
                     }}
                 />
-                {!!searchValue && !loading && (
-                    <button onClick={handleClear} className={cx('clear-btn')}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                )}
 
                 {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
 

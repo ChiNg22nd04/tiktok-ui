@@ -1,19 +1,26 @@
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100vh;
 }
 
 .container {
     max-width: 100%;
-    width: var(--default-layout-width);
-    margin-top: var(--default-layout-header-height);
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 100vh;
+}
+
+.sidebar {
+    grid-column: 1 / 2;
 }
 
 .content {
-    flex: 1;
+    grid-column: 2 / 4;
     padding: 0px 48px 104px;
+}
 
+.header {
+    grid-column: 4 / 5;
 }

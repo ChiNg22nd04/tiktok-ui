@@ -22,7 +22,6 @@ import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import { MessagesIcon, Notify } from '~/components/Icons';
 import Image from '~/components/Images';
-import Search from '../Search';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 
@@ -120,13 +119,6 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <Link to={config.routes.home} className={cx('logo')}>
-                    <img src={images.logo} alt="Logo tiktok" />
-                </Link>
-
-                <Search />
-                {/* Search */}
-
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
