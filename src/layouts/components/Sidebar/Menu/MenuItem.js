@@ -5,9 +5,10 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ title, to, icon, active }) {
+function MenuItem({ title, to, icon, active, suppressActive = false }) {
+    const getClassName = (nav) => cx('menu-item', { active: !suppressActive && nav.isActive });
     return (
-        <NavLink to={to} className={(nav) => cx('menu-item', { active: nav.isActive })}>
+        <NavLink to={to} className={getClassName}>
             <span className={cx('icon')}>{icon}</span>
             <span className={cx('active')}>{active}</span>
             <span className={cx('menu-title')}>{title}</span>
@@ -20,6 +21,7 @@ MenuItem.propTypes = {
     icon: PropTypes.node,
     title: PropTypes.string.isRequired,
     active: PropTypes.node,
+    suppressActive: PropTypes.bool,
 };
 
 export default MenuItem;

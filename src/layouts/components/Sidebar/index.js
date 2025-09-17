@@ -1,5 +1,8 @@
 import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Menu, { MenuItem } from './Menu';
 import Search from '~/layouts/components/Search';
 
@@ -26,14 +29,56 @@ import Footer from './Footer';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const [isCompact, setIsCompact] = useState(false);
+    const subnavRef = useRef(null);
+
+    const handleFocusSearch = useCallback(() => setIsCompact(true), []);
+    const handleBlurSearch = useCallback((e) => {
+        // If blur happens to an element inside subnav, keep it open.
+        // We'll close only when clicking outside of the subnav panel.
+        // The outside click is handled below.
+    }, []);
+
+    useEffect(() => {
+        const onDocClick = (e) => {
+            if (!subnavRef.current) return;
+            if (!subnavRef.current.contains(e.target)) {
+                setIsCompact(false);
+            }
+        };
+        if (isCompact) document.addEventListener('mousedown', onDocClick);
+        return () => document.removeEventListener('mousedown', onDocClick);
+    }, [isCompact]);
+
     return (
-        <aside className={cx('wrapper')}>
+        <aside className={cx('wrapper', { compact: isCompact })}>
             <div className={cx('top-sidebar')}>
                 <Link to={config.routes.home} className={cx('logo')}>
-                    <img className={cx('logoImgLight')} src={images.logoLight} alt="Logo tiktok light" />
-                    <img className={cx('logoImgDark')} src={images.logoDark} alt="Logo tiktok dark" />
+                    {/* Full logo for normal state */}
+                    <img
+                        className={cx('logoImgLight', { hidden: isCompact })}
+                        src={images.logoLight}
+                        alt="Logo tiktok light"
+                    />
+                    <img
+                        className={cx('logoImgDark', { hidden: isCompact })}
+                        src={images.logoDark}
+                        alt="Logo tiktok dark"
+                    />
+                    {/* T-logo for compact state (theme-aware) */}
+                    <img className={cx('logoTLight', { show: isCompact })} src={images.logoTLight} alt="Logo T light" />
+                    <img className={cx('logoTDark', { show: isCompact })} src={images.logoTDark} alt="Logo T dark" />
                 </Link>
-                <Search />
+                {isCompact && (
+                    <button
+                        className={cx('nav-icon', { active: true })}
+                        aria-label="Search active"
+                        onClick={() => setIsCompact(true)}
+                    >
+                        <FontAwesomeIcon className={cx('icon')} icon={faMagnifyingGlass} />
+                    </button>
+                )}
+                {!isCompact && <Search onFocusInput={handleFocusSearch} onBlurInput={handleBlurSearch} />}
             </div>
             <div className={cx('menu-sidebar')}>
                 <Menu>
@@ -42,30 +87,35 @@ function Sidebar() {
                         to={config.routes.home}
                         active={<HomeIconActive className={cx('icon-flex')} />}
                         icon={<HomeIcon className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                     <MenuItem
                         title="Following"
                         to={config.routes.following}
                         active={<FollowingIconActive className={cx('icon-flex')} />}
                         icon={<FollowingIcon className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                     <MenuItem
                         title="Friends"
                         to={config.routes.friends}
                         icon={<FriendsIcon className={cx('icon-flex')} />}
                         active={<FriendsIconActive className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                     <MenuItem
                         title="Explore"
                         to={config.routes.explore}
                         icon={<ExploreIcon className={cx('icon-flex')} />}
                         active={<ExploreIconActive className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                     <MenuItem
                         title="LIVE"
                         to={config.routes.live}
                         icon={<LIVEIcon className={cx('icon-flex')} />}
                         active={<LIVEIconActive className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                     <MenuItem
                         title="Profile"
@@ -79,6 +129,7 @@ function Sidebar() {
                             />
                         }
                         icon={<ProfileIcon className={cx('icon-flex')} />}
+                        suppressActive={isCompact}
                     ></MenuItem>
                 </Menu>
 
@@ -86,6 +137,37 @@ function Sidebar() {
 
                 <Footer />
             </div>
+
+            {/* Sub navigation panel when compact */}
+            {isCompact && (
+                <div ref={subnavRef} className={cx('subnav')}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            marginBottom: '20px',
+                            marginTop: '2px',
+                        }}
+                    >
+                        <h2 className={cx('subnav-title')}>Search</h2>
+                        <button
+                            aria-label="Close"
+                            onClick={() => setIsCompact(false)}
+                            style={{
+                                background: 'transparent',
+                                border: 'none',
+                                color: 'var(--color-text)',
+                                fontSize: '2rem',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            ×
+                        </button>
+                    </div>
+                    <Search placeholder="Search" autoFocus inline />
+                </div>
+            )}
         </aside>
     );
 }

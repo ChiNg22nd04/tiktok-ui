@@ -13,7 +13,7 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 //! !!searchValue => convert searchvALUE SANG boolean
 
-function Search() {
+function Search({ onFocusInput, onBlurInput, placeholder = 'Search', autoFocus = false, inline = false }) {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
@@ -77,6 +77,57 @@ function Search() {
         setSearchResult([]);
     };
 
+    const inputEl = (
+        <div className={cx('search')}>
+            {!!searchValue && !loading && (
+                <button onClick={handleClear} className={cx('clear-btn')}>
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                </button>
+            )}
+            <input
+                onFocus={() => {
+                    setShowResult(true);
+                    if (typeof onFocusInput === 'function') onFocusInput();
+                }}
+                onBlur={() => {
+                    if (typeof onBlurInput === 'function') onBlurInput();
+                }}
+                ref={inputRef}
+                value={searchValue}
+                placeholder={placeholder}
+                spellCheck="false"
+                autoFocus={autoFocus}
+                onChange={(e) => {
+                    setSearchValue(e.target.value.trimStart());
+                }}
+            />
+
+            {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
+
+            <button className={cx('search-btn')}>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+        </div>
+    );
+
+    if (inline) {
+        return (
+            <div>
+                {inputEl}
+                {showResult && searchValue.length > 0 && (
+                    <div className={cx('search-result')}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {searchResult.map((item) => (
+                                <AccountItem key={item.id} data={item} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
     return (
         <HeadlessTippy
             onClickOutside={handleHideResult}
@@ -93,29 +144,7 @@ function Search() {
                 </div>
             )}
         >
-            <div className={cx('search')}>
-                {!!searchValue && !loading && (
-                    <button onClick={handleClear} className={cx('clear-btn')}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                )}
-                <input
-                    onFocus={() => setShowResult(true)}
-                    ref={inputRef}
-                    value={searchValue}
-                    placeholder="Search"
-                    spellCheck="false"
-                    onChange={(e) => {
-                        setSearchValue(e.target.value.trimStart());
-                    }}
-                />
-
-                {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
-
-                <button className={cx('search-btn')}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
+            {inputEl}
         </HeadlessTippy>
     );
 }
