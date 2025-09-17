@@ -58,6 +58,20 @@
     }
 }
 
+/* Remove left padding when there is no search button */
+.search.no-button {
+    input {
+        padding-left: 0 !important;
+        margin-left: 12px;
+    }
+
+    .clear-btn,
+    .loading-icon {
+        right: 12px;
+        /* since there's no button, anchor to container edge */
+    }
+}
+
 .clear-btn,
 .loading-icon {
     position: absolute;

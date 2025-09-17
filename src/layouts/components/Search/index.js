@@ -13,7 +13,14 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 //! !!searchValue => convert searchvALUE SANG boolean
 
-function Search({ onFocusInput, onBlurInput, placeholder = 'Search', autoFocus = false, inline = false }) {
+function Search({
+    onFocusInput,
+    onBlurInput,
+    placeholder = 'Search',
+    autoFocus = false,
+    inline = false,
+    showButton = true,
+}) {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
@@ -78,7 +85,7 @@ function Search({ onFocusInput, onBlurInput, placeholder = 'Search', autoFocus =
     };
 
     const inputEl = (
-        <div className={cx('search')}>
+        <div className={cx('search', { 'no-button': !showButton })}>
             {!!searchValue && !loading && (
                 <button onClick={handleClear} className={cx('clear-btn')}>
                     <FontAwesomeIcon icon={faCircleXmark} />
@@ -104,9 +111,11 @@ function Search({ onFocusInput, onBlurInput, placeholder = 'Search', autoFocus =
 
             {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
 
-            <button className={cx('search-btn')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
+            {showButton && (
+                <button className={cx('search-btn')}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </button>
+            )}
         </div>
     );
 

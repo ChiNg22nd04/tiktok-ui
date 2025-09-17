@@ -165,7 +165,7 @@ function Sidebar() {
                             ×
                         </button>
                     </div>
-                    <Search placeholder="Search" autoFocus inline />
+                    <Search placeholder="Search" autoFocus inline showButton={false} />
                 </div>
             )}
         </aside>
