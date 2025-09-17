@@ -116,12 +116,10 @@ function Search({ onFocusInput, onBlurInput, placeholder = 'Search', autoFocus =
                 {inputEl}
                 {showResult && searchValue.length > 0 && (
                     <div className={cx('search-result')}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accounts</h4>
-                            {searchResult.map((item) => (
-                                <AccountItem key={item.id} data={item} />
-                            ))}
-                        </PopperWrapper>
+                        <h4 className={cx('search-title')}>Accounts</h4>
+                        {searchResult.map((item) => (
+                            <AccountItem key={item.id} data={item} />
+                        ))}
                     </div>
                 )}
             </div>

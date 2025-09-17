@@ -158,7 +158,7 @@ function Sidebar() {
                                 background: 'transparent',
                                 border: 'none',
                                 color: 'var(--color-text)',
-                                fontSize: '2rem',
+                                fontSize: '2.5rem',
                                 cursor: 'pointer',
                             }}
                         >

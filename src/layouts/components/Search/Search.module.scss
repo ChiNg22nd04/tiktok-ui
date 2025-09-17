@@ -61,7 +61,7 @@
 .clear-btn,
 .loading-icon {
     position: absolute;
-    right: calc(var(--search-button-width) + 16px);
+    right: calc(var(--search-button-width) - 40px);
     top: 50%;
     transform: translateY(-50%);
     color: var(--color-text-quaternary);
@@ -111,6 +111,10 @@
 .search,
 .search-result {
     width: var(--search-width);
+}
+
+.search-result {
+    padding-top: 20px;
 }
 
 .search-title {
